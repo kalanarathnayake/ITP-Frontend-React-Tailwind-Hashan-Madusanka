@@ -5,57 +5,67 @@ import * as Swal from "sweetalert2";
 export class CreateEmployee extends Component {
     constructor(props) {
         super(props);
-        this.onChangeempID = this.onChangeempID.bind(this);
-        this.onChangefullName = this.onChangefullName.bind(this);
-        this.onChangecontactNo = this.onChangecontactNo.bind(this);
-        this.onChangeemail = this.onChangeemail.bind(this);
-        this.onChangeaddress = this.onChangeaddress.bind(this);
-        this.onChangeposition = this.onChangeposition.bind(this);
+        this.onChangeempfirstName = this.onChangeempfirstName.bind(this);
+        this.onChangeemplastName = this.onChangeemplastName.bind(this);
+        this.onChangeempage = this.onChangeempage.bind(this);
+        this.onChangeempaddress = this.onChangeempaddress.bind(this);
+        this.onChangeempphone = this.onChangeempphone.bind(this);
+        this.onChangeempdob = this.onChangeempdob.bind(this);
+        this.onChangeempdepartment = this.onChangeempdepartment.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
+        // firstName lastName age address phone dob department
+
         this.state = {
-            empID: '',
-            fullName: '',
-            contactNo: '',
-            email: '',
+            firstName: '',
+            lastName: '',
+            age: '',
             address: '',
-            position: ''
+            phone: '',
+            dob: '',
+            department: ''
         }
     }
 
-    onChangeempID(e) {
+    onChangeempfirstName(e) {
         this.setState({
-            empID: e.target.value
+            firstName: e.target.value
         });
     }
 
-    onChangefullName(e) {
+    onChangeemplastName(e) {
         this.setState({
-            fullName: e.target.value
+            lastName: e.target.value
         });
     }
 
-    onChangecontactNo(e) {
+    onChangeempage(e) {
         this.setState({
-            contactNo: e.target.value
+            age: e.target.value
         });
     }
 
-    onChangeemail(e) {
-        this.setState({
-            email: e.target.value
-        });
-    }
-
-    onChangeaddress(e) {
+    onChangeempaddress(e) {
         this.setState({
             address: e.target.value
         });
     }
 
-    onChangeposition(e) {
+    onChangeempphone(e) {
         this.setState({
-            position: e.target.value
+            phone: e.target.value
+        });
+    }
+
+    onChangeempdob(e) {
+        this.setState({
+            dob: e.target.value
+        });
+    }
+
+    onChangeempdepartment(e) {
+        this.setState({
+            department: e.target.value
         });
     }
 
@@ -79,12 +89,13 @@ export class CreateEmployee extends Component {
         e.preventDefault();
 
         const employee = {
-            empID: this.state.empID,
-            fullName: this.state.fullName,
-            contactNo: this.state.contactNo,
-            email: this.state.email,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            age: this.state.age,
             address: this.state.address,
-            position: this.state.position
+            phone: this.state.phone,
+            dob: this.state.dob,
+            department: this.state.department,
         }
 
         console.log(employee);
