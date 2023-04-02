@@ -8,14 +8,10 @@ function navbar() {
         </div>
         <div className='text-lg font-light hover:text-blue-dark'>
           <a href="/employee" className="m-2 text-black no-underline duration-300 hover:text-blue-800 hover:font-normal">Employees</a>
-          <a href="/customer" className="m-2 text-black no-underline duration-300 hover:text-blue-800 hover:font-normal">Customer</a>
-          <a href="/order" className="m-2 text-black no-underline duration-300 hover:text-blue-800 hover:font-normal">Orders</a>
-          <a href="/kitchenOrder" className="m-2 text-black no-underline duration-300 hover:text-blue-800 hover:font-normal">Kitchen</a>
-          <a href="/inventory" className="m-2 text-black no-underline duration-300 hover:text-blue-800 hover:font-normal">Inventory</a>
-          <a href="/three" className="m-2 text-black no-underline duration-300 hover:text-blue-800 hover:font-normal">Delivery</a>
-          <a href="/three" className="m-2 text-black no-underline duration-300 hover:text-blue-800 hover:font-normal">Schedules</a>
-          <a href="/three" className="m-2 text-black no-underline duration-300 hover:text-blue-800 hover:font-normal">Feedbacks</a>
-          <a href="/three" className="m-2 text-black no-underline duration-300 hover:text-blue-800 hover:font-normal">Payments</a>
+          <a href="/#" className="m-2 text-black no-underline duration-300 hover:text-blue-800 hover:font-normal">SampleData</a>
+          <a href="/#" className="m-2 text-black no-underline duration-300 hover:text-blue-800 hover:font-normal">SampleData</a>
+          <a href="/#" className="m-2 text-black no-underline duration-300 hover:text-blue-800 hover:font-normal">SampleData</a>
+          <a href="/#" className="m-2 text-black no-underline duration-300 hover:text-blue-800 hover:font-normal">SampleData</a>
         </div>
         <div className="grid grid-cols-2 gap-1">
           <div class="flex flex-col sm:flex-row sm:text-left sm:justify-between">

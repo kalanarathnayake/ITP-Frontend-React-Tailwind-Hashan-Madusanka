@@ -71,19 +71,17 @@ export class CreateEmployee extends Component {
         });
     }
 
-    // demoClicked(){
+    // demoClicked() {
     //     this.setState({
-    //         fullName : "Gihan Perera",
-    //         nic : "931524475V",
-    //         empID : 32984,
-    //         dob : new Date(),
-    //         designation : "Labour",
-    //         section : "Equipment",
-    //         address : "Gampaha",
-    //         contactNo : 77564213,
-    //         emergency : 76124321,
-
-
+    //         fullName: "Gihan Perera",
+    //         nic: "931524475V",
+    //         empID: 32984,
+    //         dob: new Date(),
+    //         designation: "Labour",
+    //         section: "Equipment",
+    //         address: "Gampaha",
+    //         contactNo: 77564213,
+    //         emergency: 76124321,
     //     })
     // }
 
@@ -128,7 +126,7 @@ export class CreateEmployee extends Component {
                         title: 'Successful',
                         text: 'Employee has been added!!',
                         background: '#fff',
-                        confirmButtonColor: '#333533',
+                        confirmButtonColor: '#133EFA',
                         iconColor: '#60e004'
                     })
 
@@ -138,12 +136,11 @@ export class CreateEmployee extends Component {
                         title: 'Error',
                         text: 'Error in adding!',
                         background: '#fff',
-                        confirmButtonColor: '#333533',
+                        confirmButtonColor: '#133EFA',
                         iconColor: '#e00404'
                     })
                 }
             })
-
     }
 
     clearData = () => {
@@ -160,7 +157,7 @@ export class CreateEmployee extends Component {
 
     render() {
         return (
-            <div className="flex flex-col px-5 pt-2 ">
+            <div className="flex flex-col px-5">
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                         <div className='items-center overflow-hidden'>
@@ -168,120 +165,105 @@ export class CreateEmployee extends Component {
                                 <div class="grid grid-cols-1 gap-4 content-start pt-5 px-20">
                                     <form className='px-12 py-12 border-2 rounded-lg shadow-md bg-gray-50' onSubmit={this.onSubmit}>
                                         <div class="">
-                                            <p className='text-4xl font-semibold text-black uppercase'>
+                                            <p className='text-4xl font-semibold text-black uppercase drop-shadow-lg'>
                                                 Add Employee
                                             </p>
                                             <div className="grid grid-cols-2 gap-4 form-group">
+
                                                 <div class="">
                                                     <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>First Name : </label>
                                                     <input type="text"
                                                         required
+                                                        placeholder='Johnny'
                                                         className="form-control "
                                                         value={this.state.firstName}
                                                         onChange={this.onChangeempfirstName}
-                                                    />
-
+                                                    /><p />
                                                 </div>
+
                                                 <div className="form-group">
                                                     <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Last Name : </label>
                                                     <input type="text"
                                                         required
+                                                        placeholder='Sins'
                                                         className="form-control"
                                                         value={this.state.lastName}
                                                         onChange={this.onChangeemplastName}
-                                                    />
-
+                                                    /><p />
                                                 </div>
+
                                             </div>
 
                                             <div className="grid grid-cols-2 gap-4 form-group">
+
                                                 <div class="">
                                                     <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white' >Age : </label>
                                                     <input type="text"
                                                         required
+                                                        placeholder='34'
                                                         className="form-control"
                                                         value={this.state.age}
                                                         onChange={this.onChangeempage}
-                                                    />
-
+                                                    /><p />
                                                 </div>
                                                 <div className="form-group">
-                                                    <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Address : </label>
+                                                    <label for="large-input" className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Phone : </label>
                                                     <input type="text"
                                                         required
+                                                        placeholder='0771556154'
                                                         className="form-control"
-                                                        value={this.state.address}
-                                                        onChange={this.onChangeempaddress}
-                                                    />
+                                                        value={this.state.phone}
+                                                        onChange={this.onChangeempphone}
+                                                    /><p />
                                                 </div>
-                                            </div>
-                                            {/* <div className = "form-group">
-                                            <label>DOB : </label>
-                                            <div>
-                                                <DatePicker
-                                                selected = {this.state.dob}
-                                                onChange = {this.onChangedob}
-                                                />
-                                            </div>
-                                            </div> */}
 
+                                            </div>
                                             <div className="form-group">
-                                                <label for="large-input" className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Phone : </label>
+                                                <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Address : </label>
                                                 <textarea type="text"
                                                     required
+                                                    placeholder='43, Wilson St.Joliet, IL 60435'
                                                     className="form-control"
-                                                    value={this.state.phone}
-                                                    onChange={this.onChangeempphone}
-                                                /><p> </p>
+                                                    value={this.state.address}
+                                                    onChange={this.onChangeempaddress}
+                                                /><p />
                                             </div>
 
                                             <div className="form-group">
                                                 <label for="large-input" className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Date Of Birth : </label>
-                                                {/* <textarea type="text"
-                                                    required
-                                                    className="form-control"
-                                                    value={this.state.phone}
-                                                    onChange={this.onChangeempphone}
-                                                /> */}
                                                 <div>
                                                     <DatePicker
+                                                    className='m-2'
                                                         selected={this.state.dob}
                                                         onChange={this.onChangeempdob}
                                                     />
                                                 </div>
-
-                                            </div><p> </p>
-
-                                            <div className="form-group">
+                                            </div><p/>
+                                            {/* <div className="form-group">
                                                 <label for="large-input" className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Department : </label>
                                                 <textarea type="text"
                                                     required
                                                     className="form-control"
                                                     value={this.state.department}
                                                     onChange={this.onChangeempdepartment}
-                                                /><p> </p>
-                                            </div>
-
-
-
-                                            {/* <div className="form-group ">
-                                                <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white' for="grid-state">Position : </label>
+                                                /><p />
+                                            </div> */}
+                                            <div className="form-group ">
+                                                <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white' for="grid-state">Department : </label>
                                                 <select type="text"
                                                     required
                                                     className="form-control"
-                                                    value={this.state.position}
-                                                    onChange={this.onChangeposition}
+                                                    value={this.state.department}
+                                                    onChange={this.onChangeempdepartment}
                                                 >
-                                                    <option>Waiter Staff</option>
-                                                    <option>Kitchen Head Chef</option>
-                                                    <option>Inventory Manager</option>
-                                                    <option>Driver</option>
-                                                    <option>Delivery Manager</option>
-                                                    <option>Employee Manager</option>
-                                                    <option>Finantial Manager</option>
-                                                    <option>Product Manager</option>
-                                                </select><p /> */}
-                                            {/* </div> */}
+                                                    <option>Department 1</option>
+                                                    <option>Department 2</option>
+                                                    <option>Department 3</option>
+                                                    <option>Department 4</option>
+                                                    <option>Department 5</option>
+                                                </select><p />
+                                            </div>
+
                                             <div className="text-center align-middle form-group">
                                                 <input className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800' type="submit" value="Add Employee" />
                                             </div>

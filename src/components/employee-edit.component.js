@@ -5,10 +5,8 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"
 
 export default class EditEmployee extends Component {
-
     constructor(props) {
         super(props);
-
         this.state = {
             id: props.classId,
             firstName: '',
@@ -29,10 +27,7 @@ export default class EditEmployee extends Component {
         this.onChangeempdob = this.onChangeempdob.bind(this);
         this.onChangeempdepartment = this.onChangeempdepartment.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-
         this.onSubmit = this.onSubmit.bind(this);
-
-      
     }
 
     componentDidMount() {
@@ -46,14 +41,11 @@ export default class EditEmployee extends Component {
                     phone: response.data.phone,
                     dob: new Date(response.data.dob),
                     department: response.data.department,
-
-
                 })
             })
             .catch(function (error) {
                 console.log(error);
             })
-
     }
 
     onChangeempfirstName(e) {
@@ -100,7 +92,6 @@ export default class EditEmployee extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-
         const employee = {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
@@ -112,22 +103,18 @@ export default class EditEmployee extends Component {
         }
 
         console.log(employee);
-
-
         axios.put('http://localhost:5100/api/employee/' + this.state.id, employee)
             .then(res => {
                 console.log(res);
-
                 if (res.status === 200) {
                     // this.refreshTable();
                     this.props.close();
-
                     Swal.fire({
                         icon: 'success',
                         title: 'Successful',
-                        text: 'Employee details has been updated!!',
+                        text: 'Employee details has been updated!',
                         background: '#fff',
-                        confirmButtonColor: '#333533',
+                        confirmButtonColor: '#133EFA',
                         iconColor: '#60e004'
                     })
 
@@ -137,14 +124,12 @@ export default class EditEmployee extends Component {
                         title: 'Error',
                         text: 'There was an error updating!',
                         background: '#fff',
-                        confirmButtonColor: '#333533',
+                        confirmButtonColor: '#133EFA',
                         iconColor: '#e00404'
                     })
                 }
             })
-
     }
-
 
     render() {
         return (
@@ -220,38 +205,22 @@ export default class EditEmployee extends Component {
                                                 </div><p />
                                             </div>
 
-                                            <div className="form-group">
-                                                <label for="large-input" className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Department : </label>
-                                                <textarea type="text"
+                                            <div className="form-group ">
+                                                <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white' for="grid-state">Department : </label>
+                                                <select type="text"
                                                     required
                                                     className="form-control"
                                                     value={this.state.department}
                                                     onChange={this.onChangeempdepartment}
-                                                /><p />
+                                                >
+                                                    <option>Department 1</option>
+                                                    <option>Department 2</option>
+                                                    <option>Department 3</option>
+                                                    <option>Department 4</option>
+                                                    <option>Department 5</option>
+                                                </select><p />
                                             </div>
 
-
-                                            {/* <div className="form-group">
-                                                <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white' for="grid-state">Position : </label>
-                                                <select type="text"
-                                                    required
-                                                    className="form-control"
-                                                    value={this.state.position}
-                                                    onChange={this.onChangeposition}
-                                                ><p />
-                                                    <option>Waiter Staff</option>
-                                                    <option>Kitchen Head Chef</option>
-                                                    <option>Inventory Manager</option>
-                                                    <option>Driver</option>
-                                                    <option>Delivery Manager</option>
-                                                    <option>Employee Manager</option>
-                                                    <option>Finantial Manager</option>
-                                                    <option>Product Manager</option>
-                                                </select><p />
-                                            </div> */}
-                                            {/* <div className="text-center align-middle form-group">
-                                                <input className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800' type="submit " value="Edit Employee" />
-                                            </div> */}
                                             <div className="text-center align-middle form-group">
                                                 <input className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800' type="submit" value="Edit Employee" />
                                             </div>
