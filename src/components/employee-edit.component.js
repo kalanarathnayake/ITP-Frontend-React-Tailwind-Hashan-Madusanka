@@ -1,43 +1,52 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import * as Swal from "sweetalert2";
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css"
 
-export class EditEmployee extends Component {
+export default class EditEmployee extends Component {
 
     constructor(props) {
         super(props);
 
+        this.state = {
+            id: props.classId,
+            firstName: '',
+            lastName: '',
+            age: '',
+            address: '',
+            phone: '',
+            dob: new Date(),
+            department: ''
+        }
 
-        this.onChangeempID = this.onChangeempID.bind(this);
-        this.onChangefullName = this.onChangefullName.bind(this);
-        this.onChangecontactNo = this.onChangecontactNo.bind(this);
-        this.onChangeemail = this.onChangeemail.bind(this);
-        this.onChangeaddress = this.onChangeaddress.bind(this);
-        this.onChangeposition = this.onChangeposition.bind(this);
+
+        this.onChangeempfirstName = this.onChangeempfirstName.bind(this);
+        this.onChangeemplastName = this.onChangeemplastName.bind(this);
+        this.onChangeempage = this.onChangeempage.bind(this);
+        this.onChangeempaddress = this.onChangeempaddress.bind(this);
+        this.onChangeempphone = this.onChangeempphone.bind(this);
+        this.onChangeempdob = this.onChangeempdob.bind(this);
+        this.onChangeempdepartment = this.onChangeempdepartment.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
         this.onSubmit = this.onSubmit.bind(this);
 
-        this.state = {
-            empID: '',
-            fullName: '',
-            contactNo: '',
-            email: '',
-            address: '',
-            position: ''
-
-        }
+      
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/employee/' + this.state._id)
+        axios.get('http://localhost:5100/api/employee/' + this.state.id)
             .then(response => {
                 this.setState({
-                    empID: response.data.empID,
-                    fullName: response.data.fullName,
-                    contactNo: response.data.contactNo,
-                    email: response.data.email,
+                    firstName: response.data.firstName,
+                    lastName: response.data.lastName,
+                    age: response.data.age,
                     address: response.data.address,
-                    position: response.data.position,
+                    phone: response.data.phone,
+                    dob: new Date(response.data.dob),
+                    department: response.data.department,
+
 
                 })
             })
@@ -47,41 +56,45 @@ export class EditEmployee extends Component {
 
     }
 
-    onChangeempID(e) {
+    onChangeempfirstName(e) {
         this.setState({
-            empID: e.target.value
+            firstName: e.target.value
         });
     }
 
-    onChangefullName(e) {
+    onChangeemplastName(e) {
         this.setState({
-            fullName: e.target.value
+            lastName: e.target.value
         });
     }
 
-    onChangecontactNo(e) {
+    onChangeempage(e) {
         this.setState({
-            contactNo: e.target.value
+            age: e.target.value
         });
     }
 
-
-
-    onChangeemail(e) {
-        this.setState({
-            email: e.target.value
-        });
-    }
-
-    onChangeaddress(e) {
+    onChangeempaddress(e) {
         this.setState({
             address: e.target.value
         });
     }
 
-    onChangeposition(e) {
+    onChangeempphone(e) {
         this.setState({
-            position: e.target.value
+            phone: e.target.value
+        });
+    }
+
+    onChangeempdob(date) {
+        this.setState({
+            dob: date
+        });
+    }
+
+    onChangeempdepartment(e) {
+        this.setState({
+            department: e.target.value
         });
     }
 
@@ -89,30 +102,30 @@ export class EditEmployee extends Component {
         e.preventDefault();
 
         const employee = {
-            empID: this.state.empID,
-            fullName: this.state.fullName,
-            contactNo: this.state.contactNo,
-            email: this.state.email,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            age: this.state.age,
             address: this.state.address,
-            position: this.state.position,
-
+            phone: this.state.phone,
+            dob: this.state.dob,
+            department: this.state.department,
         }
 
         console.log(employee);
 
 
-        axios.put('http://localhost:5000/employee/' + this.props.match.params.id, employee)
+        axios.put('http://localhost:5100/api/employee/' + this.state.id, employee)
             .then(res => {
                 console.log(res);
 
                 if (res.status === 200) {
-                    this.refreshTable();
+                    // this.refreshTable();
                     this.props.close();
 
                     Swal.fire({
                         icon: 'success',
                         title: 'Successful',
-                        text: 'Classroom details has been updated!!',
+                        text: 'Employee details has been updated!!',
                         background: '#fff',
                         confirmButtonColor: '#333533',
                         iconColor: '#60e004'
@@ -146,57 +159,79 @@ export class EditEmployee extends Component {
                                             <p className='text-4xl font-semibold text-black uppercase billheading'>Update Employee</p>
                                             <div class="grid grid-cols-2 gap-4 form-group">
                                                 <div className="form-group">
-                                                    <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Employee ID : </label>
+                                                    <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Employee First Name : </label>
                                                     <input type="text"
                                                         // required
                                                         className="form-control"
-                                                        value={this.state.empID}
-                                                        onChange={this.onChangeempID}
+                                                        value={this.state.firstName}
+                                                        onChange={this.onChangeempfirstName}
 
                                                     /><p />
                                                 </div>
                                                 <div className="form-group">
-                                                    <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white' >Full Name : </label>
+                                                    <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white' >Employee Last Name : </label>
                                                     <input type="text"
                                                         required
                                                         className="form-control"
-                                                        value={this.state.fullName}
-                                                        onChange={this.onChangefullName}
+                                                        value={this.state.lastName}
+                                                        onChange={this.onChangeemplastName}
                                                     /><p />
                                                 </div>
                                             </div>
                                             <div class="grid grid-cols-2 gap-4 form-group">
                                                 <div className="form-group">
-                                                    <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Contact Number : </label>
+                                                    <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Age : </label>
                                                     <input type="text"
                                                         required
                                                         className="form-control"
-                                                        value={this.state.contactNo}
-                                                        onChange={this.onChangecontactNo}
+                                                        value={this.state.age}
+                                                        onChange={this.onChangeempage}
                                                     />
                                                     <p />
                                                 </div>
                                                 <div className="form-group">
-                                                    <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Email : </label>
+                                                    <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Address : </label>
                                                     <input type="text"
                                                         required
                                                         className="form-control"
-                                                        value={this.state.email}
-                                                        onChange={this.onChangeemail}
+                                                        value={this.state.address}
+                                                        onChange={this.onChangeempaddress}
                                                     /><p />
                                                 </div>
                                             </div>
 
                                             <div className="form-group">
-                                                <label for="large-input" className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Address : </label>
+                                                <label for="large-input" className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Phone : </label>
                                                 <textarea type="text"
                                                     required
                                                     className="form-control"
-                                                    value={this.state.address}
-                                                    onChange={this.onChangeaddress}
+                                                    value={this.state.phone}
+                                                    onChange={this.onChangeempphone}
                                                 /><p />
                                             </div>
+
                                             <div className="form-group">
+                                                <label for="large-input" className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Date Of Birth : </label>
+                                                <div>
+                                                    <DatePicker
+                                                        selected={this.state.dob}
+                                                        onChange={this.onChangeempdob}
+                                                    />
+                                                </div><p />
+                                            </div>
+
+                                            <div className="form-group">
+                                                <label for="large-input" className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Department : </label>
+                                                <textarea type="text"
+                                                    required
+                                                    className="form-control"
+                                                    value={this.state.department}
+                                                    onChange={this.onChangeempdepartment}
+                                                /><p />
+                                            </div>
+
+
+                                            {/* <div className="form-group">
                                                 <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white' for="grid-state">Position : </label>
                                                 <select type="text"
                                                     required
@@ -213,7 +248,7 @@ export class EditEmployee extends Component {
                                                     <option>Finantial Manager</option>
                                                     <option>Product Manager</option>
                                                 </select><p />
-                                            </div>
+                                            </div> */}
                                             {/* <div className="text-center align-middle form-group">
                                                 <input className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800' type="submit " value="Edit Employee" />
                                             </div> */}

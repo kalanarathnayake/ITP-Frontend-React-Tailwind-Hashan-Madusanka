@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import * as Swal from "sweetalert2";
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css"
 
 export class CreateEmployee extends Component {
     constructor(props) {
@@ -22,7 +24,7 @@ export class CreateEmployee extends Component {
             age: '',
             address: '',
             phone: '',
-            dob: '',
+            dob: new Date(),
             department: ''
         }
     }
@@ -57,9 +59,9 @@ export class CreateEmployee extends Component {
         });
     }
 
-    onChangeempdob(e) {
+    onChangeempdob(date) {
         this.setState({
-            dob: e.target.value
+            dob: date
         });
     }
 
@@ -112,7 +114,7 @@ export class CreateEmployee extends Component {
 
         // else if(this.state.fullName.length >= 10  && this.state.empID.length == 4)
         // {
-        axios.post('http://localhost:5000/employee/', employee)
+        axios.post('http://localhost:5100/api/employee/add', employee)
             // .then(res => console.log("success")).catch(err=>console.log(err));
 
             .then(res => {
@@ -124,7 +126,7 @@ export class CreateEmployee extends Component {
                     Swal.fire({
                         icon: 'success',
                         title: 'Successful',
-                        text: 'Classroom has been added!!',
+                        text: 'Employee has been added!!',
                         background: '#fff',
                         confirmButtonColor: '#333533',
                         iconColor: '#60e004'
@@ -141,17 +143,18 @@ export class CreateEmployee extends Component {
                     })
                 }
             })
-        window.location = '/employee';
+
     }
 
     clearData = () => {
         this.setState({
-            empID: '',
-            fullName: '',
-            contactNo: '',
-            email: '',
+            firstName: '',
+            lastName: '',
+            age: '',
             address: '',
-            position: ''
+            phone: '',
+            dob: '',
+            department: ''
         })
     }
 
@@ -170,45 +173,45 @@ export class CreateEmployee extends Component {
                                             </p>
                                             <div className="grid grid-cols-2 gap-4 form-group">
                                                 <div class="">
-                                                    <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Employee ID : </label>
+                                                    <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>First Name : </label>
                                                     <input type="text"
                                                         required
                                                         className="form-control "
-                                                        value={this.state.empID}
-                                                        onChange={this.onChangeempID}
+                                                        value={this.state.firstName}
+                                                        onChange={this.onChangeempfirstName}
                                                     />
-                                                    <p className="validateMsg">{this.state.empIDError}</p>
+
                                                 </div>
                                                 <div className="form-group">
-                                                    <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Full Name : </label>
+                                                    <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Last Name : </label>
                                                     <input type="text"
                                                         required
                                                         className="form-control"
-                                                        value={this.state.fullName}
-                                                        onChange={this.onChangefullName}
+                                                        value={this.state.lastName}
+                                                        onChange={this.onChangeemplastName}
                                                     />
-                                                    <p className="validateMsg">{this.state.nameError}</p>
+
                                                 </div>
                                             </div>
 
                                             <div className="grid grid-cols-2 gap-4 form-group">
                                                 <div class="">
-                                                    <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white' >Contact Number : </label>
+                                                    <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white' >Age : </label>
                                                     <input type="text"
                                                         required
                                                         className="form-control"
-                                                        value={this.state.contactNo}
-                                                        onChange={this.onChangecontactNo}
+                                                        value={this.state.age}
+                                                        onChange={this.onChangeempage}
                                                     />
-                                                    <p className="validateMsg">{this.state.contactNoError}</p>
+
                                                 </div>
                                                 <div className="form-group">
-                                                    <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Eamil : </label>
+                                                    <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Address : </label>
                                                     <input type="text"
                                                         required
                                                         className="form-control"
-                                                        value={this.state.email}
-                                                        onChange={this.onChangeemail}
+                                                        value={this.state.address}
+                                                        onChange={this.onChangeempaddress}
                                                     />
                                                 </div>
                                             </div>
@@ -223,15 +226,45 @@ export class CreateEmployee extends Component {
                                             </div> */}
 
                                             <div className="form-group">
-                                                <label for="large-input" className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Address : </label>
+                                                <label for="large-input" className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Phone : </label>
                                                 <textarea type="text"
                                                     required
                                                     className="form-control"
-                                                    value={this.state.address}
-                                                    onChange={this.onChangeaddress}
+                                                    value={this.state.phone}
+                                                    onChange={this.onChangeempphone}
                                                 /><p> </p>
                                             </div>
-                                            <div className="form-group ">
+
+                                            <div className="form-group">
+                                                <label for="large-input" className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Date Of Birth : </label>
+                                                {/* <textarea type="text"
+                                                    required
+                                                    className="form-control"
+                                                    value={this.state.phone}
+                                                    onChange={this.onChangeempphone}
+                                                /> */}
+                                                <div>
+                                                    <DatePicker
+                                                        selected={this.state.dob}
+                                                        onChange={this.onChangeempdob}
+                                                    />
+                                                </div>
+
+                                            </div><p> </p>
+
+                                            <div className="form-group">
+                                                <label for="large-input" className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Department : </label>
+                                                <textarea type="text"
+                                                    required
+                                                    className="form-control"
+                                                    value={this.state.department}
+                                                    onChange={this.onChangeempdepartment}
+                                                /><p> </p>
+                                            </div>
+
+
+
+                                            {/* <div className="form-group ">
                                                 <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white' for="grid-state">Position : </label>
                                                 <select type="text"
                                                     required
@@ -247,8 +280,8 @@ export class CreateEmployee extends Component {
                                                     <option>Employee Manager</option>
                                                     <option>Finantial Manager</option>
                                                     <option>Product Manager</option>
-                                                </select><p />
-                                            </div>
+                                                </select><p /> */}
+                                            {/* </div> */}
                                             <div className="text-center align-middle form-group">
                                                 <input className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800' type="submit" value="Add Employee" />
                                             </div>
