@@ -52,10 +52,8 @@ export class EmployeeList extends Component {
 
     constructor(props) {
         super(props);
-
         this.deleteEmployee = this.deleteEmployee.bind(this);
         this.gotoUpdateEmployee = this.gotoUpdateEmployee.bind(this);
-
         this.state = {
             employee: [],
             searchEmployee: "",
@@ -234,7 +232,6 @@ export class EmployeeList extends Component {
         });
     }
 
-
     exportEmployee = () => {
         console.log("Exporting PDF")
         const unit = "pt";
@@ -283,18 +280,34 @@ export class EmployeeList extends Component {
                                             <div class="flex justify-end sm:flex-row sm:text-left sm:justify-end gap-2">
                                                 <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                                                     <Link className='font-semibold text-white no-underline' to={"/creatEmployee"}>
-                                                        Add Employee
+                                                        <div class="flex">
+                                                            <div class="">
+                                                                <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+                                                                </svg>
+                                                            </div>
+                                                            <div class="">
+                                                                Add Employee
+                                                            </div>
+                                                        </div>
                                                     </Link>
                                                 </button>
-                                                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onClick={() => this.exportEmployee()}>
-                                                    Download Report Here
+                                                <button class="flex text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onClick={() => this.exportEmployee()}>
+                                                    <div class="">
+                                                        <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                                                        </svg>
+                                                    </div>
+                                                    <div class="">
+                                                        Download Report Here
+                                                    </div>
                                                 </button>
                                             </div>
                                             <div class="flex justify-end sm:flex-row sm:text-left sm:justify-end">
                                                 <input
                                                     className="form-control rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
                                                     type="text"
-                                                    placeholder="Search by Employee First Name"
+                                                    placeholder="Search by first name"
                                                     aria-label="Search"
                                                     onChange={(e) => {
                                                         this.setState({
